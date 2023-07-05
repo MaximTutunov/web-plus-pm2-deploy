@@ -1,3 +1,9 @@
 # Деплой приложения на сервер с использованием pm2
 
-Стартеркит проекта по автоматизации деплоя фронтенда и бэкенда при помощи pm2 (pm2 deploy)
+## web адрес
+
+* IP адрес 158.160.27.188
+
+*** front  https://maxim.tutunov.nomoreparties.sbs/
+
+*** back https://api.maxim.tutunov.nomoreparties.sbs/
