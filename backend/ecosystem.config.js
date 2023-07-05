@@ -19,10 +19,8 @@ module.exports = {
       ref: DEPLOY_REF,
       repo: DEPLOY_REPO,
       path: DEPLOY_PATH,
-      'pre-setup': 'rm -rf web-plus-pm2-deploy',
-      'pre-deploy-local': `scp ./.env.deploy ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/source/backend`,
-      'pre-deploy': 'cd backend && rm -rf node_modules dist',
-      'post-deploy': "cd backend && echo -e 'NODE_ENV=production' >> .env && echo -e 'JWT_SECRET=JWT_SECRET' >> .env && npm install && npm run build && pm2 start",
+      'post-deploy':
+      'cd backend && npm i && npm run build && pm2 startOrRestart ecosystem.config.js --env production',
     },
   },
 }
