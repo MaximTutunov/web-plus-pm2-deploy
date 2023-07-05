@@ -1,4 +1,6 @@
-require('dotenv').config({ path: '.env.deploy' });
+const dotenv = require('dotenv');
+
+dotenv.config({ path: '.env.deploy' });
 
 const {
   DEPLOY_USER, DEPLOY_HOST, DEPLOY_PATH, DEPLOY_REF, DEPLOY_REPO,
@@ -6,7 +8,7 @@ const {
 
 module.exports = {
   apps: [{
-    name: 'backend',
+    name: 'mesto-backend',
     script: './dist/app.js',
   }],
 
@@ -17,8 +19,8 @@ module.exports = {
       ref: DEPLOY_REF,
       repo: DEPLOY_REPO,
       path: DEPLOY_PATH,
-      'pre-deploy-local': `scp ./.env.deploy ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}`,
-      /*'post-deploy': 'cd backend && npm i && npm run build && pm2 startOrRestart ecosystem.config.js --env production',*/
+      'pre-deploy': `scp ./*.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/source/backend`,
+      'post-deploy': 'cd ~/mesto-backend/source/backend/ && sudo npm i && npm run build && pm2 start',
     },
   },
 };
